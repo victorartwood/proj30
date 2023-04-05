@@ -13,7 +13,8 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        //
+        $companies = Company::with('customer')->paginate(15);
+        return view('company.index', compact('companies'));
     }
 
     /**
