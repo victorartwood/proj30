@@ -6,12 +6,6 @@
     <div class="-fluid p-5">
         <h3 class="display-6">Customer Dashboard</h3>
         <p class="text-muted pb-5">A list of registered customers in our database</p>
-        {{-- <div class="row justify-content-center align-items-center g-2 p-5">
-            <div class="col">Column</div>
-            <div class="col">Column</div>
-            <div class="col">Column</div>
-        </div> --}}
-
 
         <ul class="nav nav-pills mb-3 nav-fill" id="pills-tab" role="tablist">
             <li class="nav-item" role="presentation">
@@ -41,42 +35,61 @@
                 aria-labelledby="pills-home-tab">
 
                 {{ $customers->links() }}
-                <table class="table table- table-striped table-hover table-borderless align-middle mt-4">
+                <table class="table table-sm table-striped table-hover table-borderless align-middle mt-4">
                     <thead class="table-light">
                         <caption>All Customers table</caption>
                         <tr>
                             <th>##</th>
                             <th>Name</th>
+                            <th>Phone</th>
                             <th>Email</th>
                             <th>Status</th>
                             <th>Company</th>
-                            <th>Tools</th>
+                            <th>Tools | Comming soon</th>
                         </tr>
                     </thead>
                     <tbody class="table-group-divider">
-
+                        @php
+                            $i = $customers->currentPage() * $customers->perPage() - $customers->perPage() + 1;
+                            $j = 1;
+                            $k = 1;
+                            $l = 1;
+                        @endphp
                         @foreach ($customers as $customer)
                             <tr
                                 class="table-{{ $customer->active == 'Active' ? 'success' : ($customer->active == 'Inactive' ? 'warning' : 'danger') }}">
-                                <td scope="row">##</td>
-                                <td>{{ $customer->name }}</td>
+                                <td scope="row">{{ $i++ }}</td>
+                                <td><a href="{{ route('customer.edit', [$customer]) }}"
+                                        class="btn btn-sm btn-secondary">{{ $customer->name }}</a></td>
+                                <td>{{ $customer->phone }}</td>
                                 <td>{{ $customer->email }}</td>
                                 <td>{{ $customer->active }}</td>
                                 <td>{{ $customer->company->name }}</td>
                                 <td>
-                                    <i class="fa-light fw-normal fa-thumbtack text-primary"> </i> <span
-                                        style="opacity:0;">|</span>
-                                    <i class="fa-light fw-normal  fa-image text-success"> </i> <span
-                                        style="opacity:0;">|</span>
-                                    <i class="fa-light fw-normal fa-eye fa-flash text-primary"> </i> <span
-                                        style="opacity:0;">|</span>
-                                    <i class="fa-light fw-normal fa-bookmark text-primary"> </i> <span
-                                        style="opacity:0;">|</span>
-                                    <i class="fa-light fw-normal fa-star fa-spin text-success"
-                                        style="--fa-animation-duration: 15s;"> </i> <span style="opacity:0;">|</span>
-                                    <i class="fa-light fw-normal fa-pen-to-square text-dark"> </i> <span
-                                        style="opacity:0;">|</span>
-                                    <i class="fa-light fw-normal fa-trash-xmark text-danger"> </i>
+                                    <a href="{{ route('customer.show', [$customer]) }}" class="btn btn-link p-0">
+                                        <i class="fa-light fw-normal fa-eye fa-flash text-primary"></i>
+                                    </a>
+                                    <span style="opacity:0;">|</span>
+                                    <a href="{{ route('customer.edit', [$customer]) }}" class="btn btn-link p-0">
+                                        <i class="fa-light fw-normal fa-pen-to-square text-success"> </i>
+                                    </a>
+                                    <span style="opacity:0;">|</span>
+                                    <span style="opacity:0;">|</span>
+                                    <span style="opacity:1;">|</span>
+                                    <span style="opacity:0;">|</span>
+                                    <span style="opacity:0;">|</span>
+                                    <i class="fa-light fw-normal fa-thumbtack text-secondary"> </i>
+                                    <span style="opacity:0;">|</span>
+                                    <i class="fa-light fw-normal  fa-image text-secondary"> </i>
+                                    <span style="opacity:0;">|</span>
+                                    <i class="fa-light fw-normal fa-bookmark text-secondary"> </i>
+                                    <span style="opacity:0;">|</span>
+                                    <i class="fa-light fw-normal fa-star fa-spin text-secondary"
+                                        style="--fa-animation-duration: 15s;"> </i>
+                                    <span style="opacity:0;">|</span>
+                                    <i class="fa-light fw-normal fa-flag text-secondary"> </i>
+                                    <span style="opacity:0;">|</span>
+                                    <i class="fa-light fw-normal fa-trash-xmark text-secondary"> </i>
                                 </td>
                             </tr>
                         @endforeach
@@ -111,7 +124,7 @@
 
                         @foreach ($activeCustomers as $customer)
                             <tr class="table-">
-                                <td scope="row">##</td>
+                                <td scope="row">{{ $j++ }}</td>
                                 <td>{{ $customer->name }}</td>
                                 <td>{{ $customer->email }}</td>
                                 <td>{{ $customer->active }}</td>
@@ -150,7 +163,7 @@
 
                         @foreach ($inactiveCustomers as $customer)
                             <tr class="table-">
-                                <td scope="row">##</td>
+                                <td scope="row">{{ $k++ }}</td>
                                 <td>{{ $customer->name }}</td>
                                 <td>{{ $customer->email }}</td>
                                 <td>{{ $customer->active }}</td>
@@ -190,7 +203,7 @@
 
                         @foreach ($pendingCustomers as $customer)
                             <tr class="table-">
-                                <td scope="row">##</td>
+                                <td scope="row">{{ $l++ }}</td>
                                 <td>{{ $customer->name }}</td>
                                 <td>{{ $customer->email }}</td>
                                 <td>{{ $customer->active }}</td>
