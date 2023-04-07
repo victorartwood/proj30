@@ -2,6 +2,10 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +18,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+route::view('/', 'index')->name('home');
+
+Route::resource('customer', CustomerController::class);
+Route::resource('company', CompanyController::class);
+Route::resource('service', ServiceController::class);
+Route::resource('payment', PaymentController::class);
+
+Route::view('about', 'about')->name('about');
+Route::view('contact', 'contact')->name('contact');
+Route::view('faq', 'faq')->name('faq');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -28,4 +43,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

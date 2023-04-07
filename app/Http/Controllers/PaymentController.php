@@ -2,19 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Company;
-use App\Http\Requests\StoreCompanyRequest;
-use App\Http\Requests\UpdateCompanyRequest;
+use App\Models\Payment;
+use App\Http\Requests\StorePaymentRequest;
+use App\Http\Requests\UpdatePaymentRequest;
 
-class CompanyController extends Controller
+class PaymentController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $companies = Company::with('customer')->paginate(15);
-        return view('company.index', compact('companies'));
+        //
     }
 
     /**
@@ -28,7 +27,7 @@ class CompanyController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCompanyRequest $request)
+    public function store(StorePaymentRequest $request)
     {
         //
     }
@@ -36,7 +35,7 @@ class CompanyController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Company $company)
+    public function show(Payment $payment)
     {
         //
     }
@@ -44,7 +43,7 @@ class CompanyController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Company $company)
+    public function edit(Payment $payment)
     {
         //
     }
@@ -52,7 +51,7 @@ class CompanyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCompanyRequest $request, Company $company)
+    public function update(UpdatePaymentRequest $request, Payment $payment)
     {
         //
     }
@@ -60,7 +59,7 @@ class CompanyController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Company $company)
+    public function destroy(Payment $payment)
     {
         //
     }
