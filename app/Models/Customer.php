@@ -12,9 +12,9 @@ class Customer extends Model
 
     protected $guarded = [];
 
-    // protected $attributes = [
-    //     'Active' => 0,
-    // ];
+    protected $attributes = [
+        'active' => 0,
+    ];
 
     public function scopeActive()
     {
@@ -53,6 +53,11 @@ class Customer extends Model
             3 => 'Black Listed',
         ];
     }
+
+    // public function getActiveAttribute($attribute)
+    // {
+    //     return $this->activeOptions()[$attribute];
+    // }
 
     public function getActiveAttribute($attribute)
     {

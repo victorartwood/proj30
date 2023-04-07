@@ -39,7 +39,8 @@ class CustomerController extends Controller
     {
         $customer = Customer::create($this->requestValidate());
         // Display the created customer record
-        return redirect('customer.show', compact('customer'));
+        // return redirect('customer.show', compact('customer'));
+        return redirect(route('customer.index'));
     }
 
     /**
@@ -47,7 +48,7 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        //
+        return view('customer.show', compact('customer'));
     }
 
     /**
@@ -55,7 +56,8 @@ class CustomerController extends Controller
      */
     public function edit(Customer $customer)
     {
-        //
+        $companies = Company::all();
+        return view('customer.edit', compact('customer', 'companies'));
     }
 
     /**
