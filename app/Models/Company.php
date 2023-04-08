@@ -3,15 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Model;
 
 class Company extends Model
 {
     use HasFactory;
 
-    Protected $guarded = [];
+    protected $guarded = [];
 
-    Protected $attribute = [
+    protected $attribute = [
         0 => 'Inactive'
     ];
 
@@ -22,7 +23,7 @@ class Company extends Model
      */
     public function scopeActive()
     {
-        $activeCompanies = Company::where('active',1);
+        $activeCompanies = Company::where('active', 1);
         return $activeCompanies;
     }
 
@@ -33,7 +34,7 @@ class Company extends Model
      */
     public function scopeInactive()
     {
-        $inactiveCompanies = Company::where('active',0);
+        $inactiveCompanies = Company::where('active', 0);
         return $inactiveCompanies;
     }
 
