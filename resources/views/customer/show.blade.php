@@ -9,7 +9,7 @@
             <div class="col-lg-4">
                 <div class="card shadow-lg">
                     <div class="card-header">
-                        {{ $customer->name }}\'s Info
+                        {{ $customer->name }}'s Info
                     </div>
                     <div class="card-body">
                         <h4 class="card-title">Title</h4>
