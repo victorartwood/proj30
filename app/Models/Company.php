@@ -12,8 +12,8 @@ class Company extends Model
 
     protected $guarded = [];
 
-    protected $attribute = [
-        0 => 'Inactive'
+    protected $attributes = [
+        'active' => 0,
     ];
 
     /**
@@ -51,9 +51,10 @@ class Company extends Model
     public function activeOptions()
     {
         return [
-            'Inactive' => 0,
-            'Active' => 1,
-            'Pending' => 2,
+            0 => 'Inactive',
+            1 => 'Active',
+            2 => 'Pending',
+            3 => 'Black Listed',
         ];
     }
 
