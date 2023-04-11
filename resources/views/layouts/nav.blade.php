@@ -50,24 +50,24 @@
                         <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">Company</a>
                         <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownId">
-                            <a class="dropdown-item" href="{{ route('about') }}">Create Company</a>
-                            <a class="dropdown-item" href="{{ route('contact') }}">View all Companies</a>
+                            <a class="dropdown-item" href="{{ route('company.create') }}">Create Company</a>
+                            <a class="dropdown-item" href="{{ route('company.index') }}">View all Companies</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">Service</a>
                         <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownId">
-                            <a class="dropdown-item" href="{{ route('about') }}">Create Service</a>
-                            <a class="dropdown-item" href="{{ route('contact') }}">View all Services</a>
+                            <a class="dropdown-item" href="{{ route('service.create') }}">Create Service</a>
+                            <a class="dropdown-item" href="{{ route('service.index') }}">View all Services</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">Payment</a>
                         <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownId">
-                            <a class="dropdown-item" href="{{ route('about') }}">Record Payment</a>
-                            <a class="dropdown-item" href="{{ route('contact') }}">View all Payments</a>
+                            <a class="dropdown-item" href="{{ route('payment.create') }}">Record Payment</a>
+                            <a class="dropdown-item" href="{{ route('payment.index') }}">View all Payments</a>
                         </div>
                     </li>
 
