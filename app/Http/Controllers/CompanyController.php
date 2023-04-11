@@ -22,15 +22,18 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        //
+        $company = new Company();
+        return view('company.create', compact('company'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreCompanyRequest $request)
+    // public function store(StoreCompanyRequest $request)
+    public function store()
     {
-        //
+        $company = Company::create($this->requestValide());
+        return redirect(route('company.index'));
     }
 
     /**
@@ -38,7 +41,6 @@ class CompanyController extends Controller
      */
     public function show(Company $company)
     {
-        //
     }
 
     /**
@@ -63,5 +65,12 @@ class CompanyController extends Controller
     public function destroy(Company $company)
     {
         //
+    }
+
+    public function requestValide()
+    {
+        return request()->validate([
+            'name' => 'required|min:5',
+        ]);
     }
 }
