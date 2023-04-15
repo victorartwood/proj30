@@ -25,6 +25,15 @@
     <div class="invalid-feedback">{{ $errors->first('email') }} :-(</div>
 </div>
 <div class="mb-3">
+    <label for="" class="form-label">Physical address</label>
+    <input type="address" name="address" id="address"
+        class="form-control shadow {{ $errors->first('address') != null ? 'is-invalid' : (old('address') == null ? '' : 'is-valid') }}"
+        placeholder="address address" aria-describedby="helpId"
+        value="{{ old('address') != '' ? old('email') : $customer->address }}">
+    <div class="valid-feedback">Customer's address address looks okay</div>
+    <div class="invalid-feedback">{{ $errors->first('address') }} :-(</div>
+</div>
+<div class="mb-3">
     <label for="company_id" class="form-label">Company</label>
     <select name="company_id" id="company_id"
         class="form-control shadow {{ $errors->first('company_id') != null ? 'is-invalid' : (old('company_id') == null ? '' : 'is-valid') }}">

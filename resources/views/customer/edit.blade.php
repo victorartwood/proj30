@@ -5,7 +5,7 @@
 @section('content')
     <div class="container p-5">
         <div class="row">
-            <div class="col-lg-5 shadow-lg p-5">
+            <div class="col-lg-5 shadow-lg p-5 bg-light">
 
                 <h3 class="display-6">Edit customer record</h3>
                 <p class="text-muted pb-3">Fill in the fields bellow to create a new customer record.</p>

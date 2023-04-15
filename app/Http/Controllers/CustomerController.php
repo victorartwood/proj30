@@ -40,7 +40,8 @@ class CustomerController extends Controller
         $customer = Customer::create($this->requestValidate());
         // Display the created customer record
         // return redirect('customer.show', compact('customer'));
-        return redirect(route('customer.index'));
+        return redirect(route('customer.show', [$customer]));
+        // return redirect(route('customer.index'));
     }
 
     /**
@@ -64,9 +65,11 @@ class CustomerController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCustomerRequest $request, Customer $customer)
+    // public function update(UpdateCustomerRequest $request, Customer $customer)
+    public function update(Customer $customer)
     {
-        //
+        $customer->update($this->requestValidate());
+        return redirect(route('customer.show', [$customer]));
     }
 
     /**
@@ -74,7 +77,8 @@ class CustomerController extends Controller
      */
     public function destroy(Customer $customer)
     {
-        //
+        $customer->delete();
+        return redirect(route('customer.index'));
     }
 
     public function requestValidate()
