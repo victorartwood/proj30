@@ -10,8 +10,10 @@ class Service extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     protected $attributes = [
-        'Active' => 1,
+        'active' => 1,
     ];
 
     /**
@@ -31,5 +33,10 @@ class Service extends Model
             1 => 'Active',
             2 => 'Pending',
         ];
+    }
+
+    public function getActiveAttribute($attribute)
+    {
+        return $this->activeOptions()[$attribute];
     }
 }
