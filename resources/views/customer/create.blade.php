@@ -6,15 +6,16 @@
     <div class="container p-5">
         <div class="row">
 
-            <div class="col-lg-5 p-5 shadow-lg">
-                <h3 class="display-6">Create a new customer record</h3>
+            <div class="col-lg-5 p-5 shadow-lg Rounded bg-light">
+                <h3 class="display-6"><i class="fa-light fa-user-plus pe-3"> </i>Create a new customer record</h3>
                 <p class="text-muted pb-3">Fill in the fields bellow to create a new customer record.</p>
 
                 @if ($errors->first() != null)
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 
-                        <strong>Errors found</strong> Some errors were found and need your action.
+                        <strong>Errors found</strong> Some errors were found and need your action. Fields with errors have
+                        been marked for you.
                     </div>
                 @endif
 

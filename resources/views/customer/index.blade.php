@@ -30,6 +30,14 @@
         </ul>
 
         {{-- ===================== Customer Tab pane  --}}
+
+        @php
+            $i = $customers->currentPage() * $customers->perPage() - $customers->perPage() + 1;
+            $j = 1;
+            $k = 1;
+            $l = 1;
+        @endphp
+
         <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active table-responsive shadow-lg rounded p-5" id="pills-home" role="tabpanel"
                 aria-labelledby="pills-home-tab">
@@ -42,6 +50,7 @@
                             <th>##</th>
                             <th>Name</th>
                             <th>Phone</th>
+                            <th>Address</th>
                             <th>Email</th>
                             <th>Status</th>
                             <th>Company</th>
@@ -49,12 +58,6 @@
                         </tr>
                     </thead>
                     <tbody class="table-group-divider">
-                        @php
-                            $i = $customers->currentPage() * $customers->perPage() - $customers->perPage() + 1;
-                            $j = 1;
-                            $k = 1;
-                            $l = 1;
-                        @endphp
                         @foreach ($customers as $customer)
                             <tr
                                 class="table-{{ $customer->active == 'Active' ? 'success' : ($customer->active == 'Inactive' ? 'warning' : 'danger') }}">
@@ -62,6 +65,7 @@
                                 <td><a href="{{ route('customer.edit', [$customer]) }}"
                                         class="btn btn-sm btn-secondary">{{ $customer->name }}</a></td>
                                 <td>{{ $customer->phone }}</td>
+                                <td>{{ $customer->address }}</td>
                                 <td>{{ $customer->email }}</td>
                                 <td>{{ $customer->active }}</td>
                                 <td>{{ $customer->company->name }}</td>

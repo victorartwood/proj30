@@ -48,7 +48,8 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        return view('customer.show', compact('customer'));
+        $peers = count(Customer::where('company_id', $customer->company_id)->get());
+        return view('customer.show', compact('customer', 'peers'));
     }
 
     /**
@@ -81,6 +82,7 @@ class CustomerController extends Controller
         return request()->validate([
             'name' => 'required|min:3',
             'email' => 'required|email',
+            'address' => 'required|min:5',
             'phone' => 'required|min:10',
             'active' => 'required|min:1',
             'company_id' => 'required|min:1'
