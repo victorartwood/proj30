@@ -32,7 +32,7 @@ class CompanyController extends Controller
     // public function store(StoreCompanyRequest $request)
     public function store()
     {
-        $company = Company::create($this->requestValide());
+        $company = Company::create($this->requestValidate());
         return redirect(route('company.index'));
     }
 
@@ -41,6 +41,8 @@ class CompanyController extends Controller
      */
     public function show(Company $company)
     {
+        // $peers = count()
+        return view('company.show', compact('company'));
     }
 
     /**
@@ -48,15 +50,18 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
-        //
+        return view('company.edit', compact('company'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCompanyRequest $request, Company $company)
+    // public function update(UpdateCompanyRequest $request, Company $company)
+    public function update(Company $company)
     {
-        //
+        $company->update($this->requestValidate());
+        $updateSuccess = 1;
+        return redirect(route('company.show', [$company]));
     }
 
     /**
@@ -64,13 +69,19 @@ class CompanyController extends Controller
      */
     public function destroy(Company $company)
     {
-        //
+        $company->delete();
+        return redirect(route('company.index'));
     }
 
-    public function requestValide()
+    public function requestValidate()
     {
         return request()->validate([
             'name' => 'required|min:5',
+            'phone' => 'required|min:10',
+            'email' => 'required',
+            'address' => 'required|min:5',
+            'description' => 'required|min:10',
+            'active' => 'required|min:1'
         ]);
     }
 }
