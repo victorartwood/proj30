@@ -24,10 +24,10 @@ use App\Http\Controllers\PaymentController;
 
 route::view('/', 'index')->name('home');
 
-Route::resource('customer', CustomerController::class);
-Route::resource('company', CompanyController::class);
-Route::resource('service', ServiceController::class);
-Route::resource('payment', PaymentController::class);
+Route::resource('customer', CustomerController::class)->middleware(['auth', 'verified']);
+Route::resource('company', CompanyController::class)->middleware(['auth', 'verified']);
+Route::resource('service', ServiceController::class)->middleware(['auth', 'verified']);
+Route::resource('payment', PaymentController::class)->middleware(['auth', 'verified']);
 
 Route::view('about', 'about')->name('about');
 Route::view('contact', 'contact')->name('contact');

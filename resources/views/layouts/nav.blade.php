@@ -42,7 +42,13 @@
                         <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">Customer</a>
                         <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownId">
-                            <a class="dropdown-item" href="{{ route('customer.create') }}">Create Customer</a>
+                            <a class="dropdown-item" href="{{ route('customer.create') }}"> <i
+                                    class="fa-light fa-user-plus pe-2"> </i> Create Customer</a>
+                            <hr class="dropdown-divider">
+                            <a class="dropdown-item" href="{{ route('customer.index') }}">Active Customers</a>
+                            <a class="dropdown-item" href="{{ route('customer.index') }}">Inactive Customers</a>
+                            <a class="dropdown-item" href="{{ route('customer.index') }}">Pending activation</a>
+                            <hr class="dropdown-divider">
                             <a class="dropdown-item" href="{{ route('customer.index') }}">View all Customers</a>
                         </div>
                     </li>
@@ -50,7 +56,13 @@
                         <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">Company</a>
                         <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownId">
-                            <a class="dropdown-item" href="{{ route('company.create') }}">Create Company</a>
+                            <a class="dropdown-item" href="{{ route('company.create') }}"> <i
+                                    class="fa-thin fa-city pe-1"></i> Create Company</a>
+                            <hr class="dropdown-divider">
+                            <a class="dropdown-item" href="{{ route('company.index') }}">Active Companies</a>
+                            <a class="dropdown-item" href="{{ route('company.index') }}">Inactive Companies</a>
+                            <a class="dropdown-item" href="{{ route('company.index') }}">Pending activation</a>
+                            <hr class="dropdown-divider">
                             <a class="dropdown-item" href="{{ route('company.index') }}">View all Companies</a>
                         </div>
                     </li>
