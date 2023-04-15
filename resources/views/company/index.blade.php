@@ -5,7 +5,7 @@
 @section('content')
     <div class="content p-5">
         <div class="row">
-            <div class="col-lg-12 p-5 table-responsive shadow">
+            <div class="col-lg-12 p-5 table-responsive shadow bg-light">
 
                 <h4 class="display-6">Companies regitered with us</h4>
                 <p class="text-muted">Here's a list of all companies registered withus</p>
@@ -20,10 +20,15 @@
                     <div class="p-2 bd-highlight">Flex item</div> --}}
                     <div class="btn-group ms-auto" role="group" aria-label="Basic example">
                         <button type="button" class="btn btn-sm btn-outline-secondary px-3 active"><i
-                                class="fa-thin fa-list-timeline">
+                                class="fa-thin fa-list pe-2">
                             </i>
-                            List</button>
-                        <button type="button" class="btn btn-sm btn-outline-secondary px-3"><span class="fa-thin fa-grid">
+                            Compact</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary px-3 "><i
+                                class="fa-thin fa-list-timeline pe-2">
+                            </i>
+                            Loose</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary px-3"><span
+                                class="fa-thin fa-grid pe-2">
                             </span>
                             Grid</button>
                     </div>
@@ -39,15 +44,50 @@
                             <th>Email</th>
                             <th>Active</th>
                             <th>Services</th>
-                            <th>Members</th>
-                            <th>Tools | Comming soon</th>
+                            <th>
+                                <button type="button" class="btn btn-link p-0" id="liveToastBtn">
+                                    <span class="fa-light fw-normal fa-solid fa-users text-dark" data-bs-toggle="tooltip"
+                                        data-bs-placement="right" title="Members"> </span>
+                                </button>
+                            </th>
+                            <th>
+                                <button type="button" class="btn btn-link p-0" id="liveToastBtn">
+                                    {{-- <i class="fa-solid fa-screwdriver-wrench"></i> --}}
+                                    <span class="fa-solid fa-screwdriver-wrench text-dark" data-bs-toggle="tooltip"
+                                        data-bs-placement="right" title="Tools"> </span>
+                                </button>
+                            </th>
+                            <th data-bs-toggle="tooltip" data-bs-placement="right" title="Comming soon">
+                                <button type="button" class="btn btn-outline-light p-0 px-2 text-secondary"
+                                    id="liveToastBtn">
+                                    {{-- <i class="fa-solid fa-screwdriver-wrench"></i> --}}
+                                    <span class="fa-solid fa-clock-rotate-left pe-2"> </span>
+                                    Comming soon
+                                </button>
+                            </th>
+
                         </tr>
                     </thead>
                     <tbody class="table-group-divider">
                         @foreach ($companies as $company)
                             <tr>
-                                <td scope="row">{{ $i++ }}</td>
-                                <td>{{ $company->name }}</td>
+                                <td scope="row">
+
+                                    <button type="button" class="btn btn-link p-0" id="liveToastBtn">
+                                        <i class="fa-light fw-normal fa-grip-vertical text-secondary"
+                                            data-bs-toggle="tooltip" data-bs-placement="right" title="Grip"> </i>
+                                    </button>
+                                    {{ $i++ }}
+                                </td>
+                                <td>
+
+                                    <button type="button" class="btn btn-link p-0" id="liveToastBtn">
+                                        <i class="fa-light fw-normal fa-note text-success pe-2" data-bs-toggle="tooltip"
+                                            data-bs-placement="right" title="Description: {{ $company->description }}"> </i>
+                                    </button>
+
+                                    {{ $company->name }}
+                                </td>
                                 <td>{{ $company->phone }}</td>
                                 <td>{{ $company->address }}</td>
                                 <td>{{ $company->email }}</td>
@@ -55,59 +95,56 @@
                                 <td>##</td>
                                 <td>{{ count($company->customer) }}</td>
                                 <td>
-                                    <a href="{{ route('company.edit', [$company]) }}" class="btn btn-link p-0">
-                                        <span class="fa-light fw-normal fa-clone text-secondary" data-bs-toggle="tooltip"
-                                            data-bs-placement="right" title="View Pop Info"> </span>
-                                    </a>
-                                    <span style="opacity:0;">|</span>
-                                    <a href="{{ route('company.show', [$company]) }}" class="btn btn-link p-0">
-                                        <span class="fa-light fw-normal fa-eye fa-flash text-primary"
-                                            data-bs-toggle="tooltip" data-bs-placement="right" title="View company"></span>
-                                    </a>
-                                    <span style="opacity:0;">|</span>
-                                    <a href="{{ route('company.edit', [$company]) }}" class="btn btn-link p-0">
-                                        <span class="fa-light fw-normal fa-pen-to-square text-success"
-                                            data-bs-toggle="tooltip" data-bs-placement="right" title="Edit company"> </span>
-                                    </a>
 
-                                    <span style="opacity:0;">|</span>
-                                    <span style="opacity:0;">|</span>
-                                    <span style="opacity:1;">|</span>
-                                    <span style="opacity:0;">|</span>
-                                    <span style="opacity:0;">|</span>
+                                    <form action="{{ route('company.destroy', [$company]) }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <a href="{{ route('company.show', [$company]) }}" class="btn btn-link p-0 pe-0">
+                                            <span class="fa-light fw-normal fa-eye fa-flash text-primary"
+                                                data-bs-toggle="tooltip" data-bs-placement="right"
+                                                title="View company"></span>
+                                        </a>
+                                        <a href="{{ route('company.edit', [$company]) }}" class="btn btn-link p-0 pe-3">
+                                            <span class="fa-light fw-normal fa-pen-to-square text-success"
+                                                data-bs-toggle="tooltip" data-bs-placement="right" title="Edit company">
+                                            </span>
+                                        </a>
+                                        <button type="submit" class="btn btn-link p-0" disabled>
+                                            <span class="fa-light fw-normal fa-trash-xmark text-danger"
+                                                data-bs-toggle="tooltip" data-bs-placement="right" title="Delete Company">
+                                            </span>
+                                        </button>
+                                    </form>
 
-                                    <button type="button" class="btn btn-link p-0" id="liveToastBtn">
+                                </td>
+                                <td>
+
+                                    <button type="button" class="btn btn-link p-0 p-0" id="liveToastBtn">
                                         <i class="fa-light fw-normal fa-thumbtack text-secondary" data-bs-toggle="tooltip"
                                             data-bs-placement="right" title="comming soon"> </i>
                                     </button>
-                                    <span style="opacity:0;">|</span>
-                                    <a href="#" class="btn btn-link p-0">
+                                    <a href="#" class="btn btn-link p-0 p-0">
                                         <i class="fa-light fw-normal  fa-image text-secondary" data-bs-toggle="tooltip"
                                             data-bs-placement="right" title="comming soon"> </i>
                                     </a>
-                                    <span style="opacity:0;">|</span>
-                                    <a href="#" class="btn btn-link p-0">
+                                    <a href="#" class="btn btn-link p-0 p-0">
                                         <i class="fa-light fw-normal fa-bookmark text-secondary" data-bs-toggle="tooltip"
                                             data-bs-placement="right" title="comming soon"> </i>
                                     </a>
-                                    <span style="opacity:0;">|</span>
-                                    <a href="#" class="btn btn-link p-0">
+                                    <a href="#" class="btn btn-link p-0 p-0">
                                         <i class="fa-light fw-normal fa-star fa-spin text-secondary"
                                             style="--fa-animation-duration: 15s;" data-bs-toggle="tooltip"
                                             data-bs-placement="right" title="comming soon"> </i>
                                     </a>
-                                    <span style="opacity:0;">|</span>
-                                    <a href="#" class="btn btn-link p-0">
+                                    <a href="#" class="btn btn-link p-0 p-0">
                                         <i class="fa-light fw-normal fa-flag text-secondary" data-bs-toggle="tooltip"
                                             data-bs-placement="right" title="comming soon"> </i>
                                     </a>
-                                    <span style="opacity:0;">|</span>
-                                    <a href="#" class="btn btn-link p-0">
-                                        <i class="fa-light fw-normal fa-trash-xmark text-secondary" data-bs-toggle="tooltip"
-                                            data-bs-placement="right" title="comming soon"> </i>
+                                    <a href="#" class="btn btn-link p-0 p-0">
+                                        <i class="fa-light fw-normal fa-trash-xmark text-secondary"
+                                            data-bs-toggle="tooltip" data-bs-placement="right" title="comming soon"> </i>
                                     </a>
-                                    <span style="opacity:0;">|</span>
-                                    <a href="#" class="btn btn-link p-0">
+                                    <a href="#" class="btn btn-link p-0 p-0">
                                         <i class="fa-light fw-normal fa-envelope-circle-check text-secondary"
                                             data-bs-toggle="tooltip" data-bs-placement="right" title="comming soon"> </i>
                                     </a>
