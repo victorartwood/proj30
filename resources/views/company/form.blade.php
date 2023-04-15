@@ -42,7 +42,7 @@
 <div class="mb-3">
     <label for="active" class="form-label">Status</label>
     <select
-        class="form-select shadow {{ $errors->first('status') != null ? 'is-invalid' : (old('active') != null ? 'is-valid' : '') }} "
+        class="form-select shadow {{ $errors->first('active') != null ? 'is-invalid' : (old('active') != null ? 'is-valid' : '') }} "
         name="active" id="active">
         <option disabled>-- Select one --</option>
         @foreach ($company->activeOptions() as $itemKey => $itemValue)
@@ -51,5 +51,5 @@
         @endforeach
     </select>
     <div class="valid-feedback">Looks okay :)</div>
-    <div class="invalid-feedback">{{ $errors->first('status') }}</div>
+    <div class="invalid-feedback">{{ $errors->first('active') }}</div>
 </div>
