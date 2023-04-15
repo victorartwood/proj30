@@ -39,11 +39,11 @@
         @endphp
 
         <div class="tab-content" id="pills-tabContent">
-            <div class="tab-pane fade show active table-responsive shadow-lg rounded p-5" id="pills-home" role="tabpanel"
-                aria-labelledby="pills-home-tab">
+            <div class="tab-pane fade show active table-responsive shadow-lg rounded p-5 bg-light" id="pills-home"
+                role="tabpanel" aria-labelledby="pills-home-tab">
 
                 {{ $customers->links() }}
-                <table class="table table-sm table-striped table-hover table-borderless align-middle mt-4">
+                <table class="table table-sm table-striped table-hover  align-middle mt-4">
                     <thead class="table-light">
                         <caption>All Customers table</caption>
                         <tr>
@@ -54,46 +54,92 @@
                             <th>Email</th>
                             <th>Status</th>
                             <th>Company</th>
-                            <th>Tools | Comming soon</th>
+                            <th>
+                                <button type="button" class="btn btn-link p-0" id="liveToastBtn">
+                                    <span class="fa-solid fa-screwdriver-wrench text-dark" data-bs-toggle="tooltip"
+                                        data-bs-placement="right" title="Tools"> </span>
+                                </button>
+                            </th>
+                            <th data-bs-toggle="tooltip" data-bs-placement="right" title="Comming soon">
+                                <button type="button" class="btn btn-outline-light p-0 px-2 text-secondary"
+                                    id="liveToastBtn">
+                                    <span class="fa-solid fa-clock-rotate-left pe-2"> </span>
+                                    Coming soon
+                                </button>
+                            </th>
                         </tr>
                     </thead>
                     <tbody class="table-group-divider">
+
+                        {{-- class="table--{{ $customer->active == 'Active' ? 'success' : ($customer->active == 'Inactive' ? 'warning' : 'danger') }}" --}}
                         @foreach ($customers as $customer)
                             <tr
                                 class="table-{{ $customer->active == 'Active' ? 'success' : ($customer->active == 'Inactive' ? 'warning' : 'danger') }}">
-                                <td scope="row">{{ $i++ }}</td>
+                                <td scope="row">
+                                    <button type="button" class="btn btn-link p-0" id="liveToastBtn">
+                                        <i class="fa-light fw-normal fa-grip-vertical text-secondary"
+                                            data-bs-toggle="tooltip" data-bs-placement="right" title="Grip"> </i>
+                                    </button>
+                                    {{ $i++ }}
+                                </td>
                                 <td><a href="{{ route('customer.edit', [$customer]) }}"
-                                        class="btn btn-sm btn-secondary">{{ $customer->name }}</a></td>
+                                        class="btn btn-sm btn-outline-dark">{{ $customer->name }}</a></td>
                                 <td>{{ $customer->phone }}</td>
                                 <td>{{ $customer->address }}</td>
                                 <td>{{ $customer->email }}</td>
                                 <td>{{ $customer->active }}</td>
-                                <td>{{ $customer->company->name }}</td>
+                                <td>{{ Str::limit($customer->company->name, 20) }}</td>
                                 <td>
-                                    <a href="{{ route('customer.show', [$customer]) }}" class="btn btn-link p-0">
-                                        <i class="fa-light fw-normal fa-eye fa-flash text-primary"></i>
+
+                                    <form action="{{ route('customer.destroy', [$customer]) }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <a href="{{ route('customer.show', [$customer]) }}" class="btn btn-link p-0">
+                                            <i class="fa-light fw-normal fa-eye fa-flash text-primary"></i>
+                                        </a>
+                                        <a href="{{ route('customer.edit', [$customer]) }}" class="btn btn-link p-0 pe-2">
+                                            <i class="fa-light fw-normal fa-pen-to-square text-success"> </i>
+                                        </a>
+
+                                        <button type="submit" class="btn btn-link p-0">
+                                            <span class="fa-light fw-normal fa-trash-xmark text-danger"
+                                                data-bs-toggle="tooltip" data-bs-placement="right" title="Delete Company">
+                                            </span>
+                                        </button>
+                                    </form>
+                                </td>
+                                <td>
+
+
+                                    <button type="button" class="btn btn-link p-0 p-0" id="liveToastBtn">
+                                        <i class="fa-light fw-normal fa-thumbtack text-secondary" data-bs-toggle="tooltip"
+                                            data-bs-placement="right" title="comming soon"> </i>
+                                    </button>
+                                    <a href="#" class="btn btn-link p-0 p-0">
+                                        <i class="fa-light fw-normal  fa-image text-secondary" data-bs-toggle="tooltip"
+                                            data-bs-placement="right" title="comming soon"> </i>
                                     </a>
-                                    <span style="opacity:0;">|</span>
-                                    <a href="{{ route('customer.edit', [$customer]) }}" class="btn btn-link p-0">
-                                        <i class="fa-light fw-normal fa-pen-to-square text-success"> </i>
+                                    <a href="#" class="btn btn-link p-0 p-0">
+                                        <i class="fa-light fw-normal fa-bookmark text-secondary" data-bs-toggle="tooltip"
+                                            data-bs-placement="right" title="comming soon"> </i>
                                     </a>
-                                    <span style="opacity:0;">|</span>
-                                    <span style="opacity:0;">|</span>
-                                    <span style="opacity:1;">|</span>
-                                    <span style="opacity:0;">|</span>
-                                    <span style="opacity:0;">|</span>
-                                    <i class="fa-light fw-normal fa-thumbtack text-secondary"> </i>
-                                    <span style="opacity:0;">|</span>
-                                    <i class="fa-light fw-normal  fa-image text-secondary"> </i>
-                                    <span style="opacity:0;">|</span>
-                                    <i class="fa-light fw-normal fa-bookmark text-secondary"> </i>
-                                    <span style="opacity:0;">|</span>
-                                    <i class="fa-light fw-normal fa-star fa-spin text-secondary"
-                                        style="--fa-animation-duration: 15s;"> </i>
-                                    <span style="opacity:0;">|</span>
-                                    <i class="fa-light fw-normal fa-flag text-secondary"> </i>
-                                    <span style="opacity:0;">|</span>
-                                    <i class="fa-light fw-normal fa-trash-xmark text-secondary"> </i>
+                                    <a href="#" class="btn btn-link p-0 p-0">
+                                        <i class="fa-light fw-normal fa-star fa-spin text-secondary"
+                                            style="--fa-animation-duration: 15s;" data-bs-toggle="tooltip"
+                                            data-bs-placement="right" title="comming soon"> </i>
+                                    </a>
+                                    <a href="#" class="btn btn-link p-0 p-0">
+                                        <i class="fa-light fw-normal fa-flag text-secondary" data-bs-toggle="tooltip"
+                                            data-bs-placement="right" title="comming soon"> </i>
+                                    </a>
+                                    <a href="#" class="btn btn-link p-0 p-0">
+                                        <i class="fa-light fw-normal fa-recycle text-secondary" data-bs-toggle="tooltip"
+                                            data-bs-placement="right" title="comming soon"> </i>
+                                    </a>
+                                    <a href="#" class="btn btn-link p-0 p-0">
+                                        <i class="fa-light fw-normal fa-envelope-circle-check text-secondary"
+                                            data-bs-toggle="tooltip" data-bs-placement="right" title="comming soon"> </i>
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach
@@ -141,7 +187,8 @@
 
                     </tfoot>
                 </table>
-                <a name="inactiveCustomers" id="inactiveCustomers" class="btn btn-success" href="#" role="button">See
+                <a name="inactiveCustomers" id="inactiveCustomers" class="btn btn-success" href="#"
+                    role="button">See
                     all active customers</a>
 
             </div>

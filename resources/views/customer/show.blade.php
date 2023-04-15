@@ -7,12 +7,12 @@
         <div class="row">
 
             <div class="col-lg-4">
-                <div class="card shadow-lg">
+                <div class="card shadow-lg bg-light">
                     <div class="card-header">
-                        {{ $customer->name }}'s Info
+                        Customer's Details
                     </div>
                     <div class="card-body">
-                        <h4 class="card-title display-6">{{ $customer->name }}</h4>
+                        <h4 class="card-title display-6"><i class="fa-thin fa-user p-0 pe-3"></i> {{ $customer->name }}</h4>
                         <p class="card-text">
                             Tel No.: {{ $customer->phone }} <br>
                             E-mail Address: {{ $customer->email }} <br>
