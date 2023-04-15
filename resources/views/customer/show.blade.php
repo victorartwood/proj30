@@ -12,11 +12,20 @@
                         {{ $customer->name }}'s Info
                     </div>
                     <div class="card-body">
-                        <h4 class="card-title">Title</h4>
-                        <p class="card-text">Text</p>
+                        <h4 class="card-title display-6">{{ $customer->name }}</h4>
+                        <p class="card-text">
+                            Tel No.: {{ $customer->phone }} <br>
+                            E-mail Address: {{ $customer->email }} <br>
+                            Physical address: {{ $customer->address }} <br>
+                        </p>
+                        <p class="card-text">
+                            Company name: {{ $customer->company->name }} <br>
+                            Phone: {{ $customer->company->phone }} <br>
+                            E-mail address: {{ $customer->company->email }} <br>
+                        </p>
                     </div>
                     <div class="card-footer text-muted">
-                        Footer
+                        {{ $customer->name }} has {{ $peers }} peers in {{ $customer->company->name }} company.
                     </div>
                 </div>
             </div>

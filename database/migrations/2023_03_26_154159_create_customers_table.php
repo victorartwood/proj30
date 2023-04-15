@@ -16,6 +16,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('name');
             $table->string('email');
+            $table->string('address');
             $table->string('phone');
             $table->string('active');
             $table->string('company_id');
