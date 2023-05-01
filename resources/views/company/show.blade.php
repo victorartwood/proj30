@@ -8,7 +8,7 @@
             <div class="col-lg-4">
                 <div class="card shadow rounded">
                     <div class="card-header">
-                        CnC Group
+                        Company information
                     </div>
                     <div class="card-body">
                         <h4 class="card-title display-6">{{ $company->name }}</h4>
