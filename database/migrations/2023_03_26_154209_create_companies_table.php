@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string('email');
             $table->string('address');
             $table->string('active');
-            $table->string('description');
+            // $table->string('description');
+            $table->longText('description');
         });
     }
 
